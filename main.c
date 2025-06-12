@@ -35,6 +35,15 @@ GtkWidget *buttonmoins;
 GtkWidget *buttonplus;
 GtkWidget *buttonresult;
 
+
+//édition entry 
+void addValue(GtkWidget *widget, gpointer data){
+    gint pos = -1;
+    const gchar *text = gtk_button_get_label(GTK_BUTTON(widget));
+    gtk_editable_insert_text(GTK_EDITABLE(Champs), text, -1, &pos);
+}
+
+
 int main(int argc, char *argv[]){
     //initialisation GTK
     gtk_init(&argc, &argv);
@@ -72,8 +81,10 @@ int main(int argc, char *argv[]){
     //Couche 1
     boxmain = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(window), boxmain);
+
     Champs = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(boxmain), Champs, FALSE, FALSE, 10);
+
 
     boxselect = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start(GTK_BOX(boxmain), boxselect, FALSE, FALSE, 2);
@@ -82,8 +93,11 @@ int main(int argc, char *argv[]){
     gtk_box_pack_start(GTK_BOX(boxselect), boxcol1, FALSE, FALSE, 2);
     buttonC = gtk_button_new_with_label("C");
     button7 = gtk_button_new_with_label("7");
+    g_signal_connect(button7, "clicked", G_CALLBACK(addValue), NULL);
     button4 = gtk_button_new_with_label("4");
+    g_signal_connect(button4, "clicked", G_CALLBACK(addValue), NULL);
     button1 = gtk_button_new_with_label("1");
+    g_signal_connect(button1, "clicked", G_CALLBACK(addValue), NULL);
     gtk_box_pack_start(GTK_BOX(boxcol1), buttonC, FALSE, FALSE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol1), button7, FALSE, FALSE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol1), button4, FALSE, FALSE, 2);
@@ -92,9 +106,13 @@ int main(int argc, char *argv[]){
     boxcol2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(boxselect), boxcol2, FALSE, FALSE, 2);
     buttondiv = gtk_button_new_with_label("/");
+    g_signal_connect(buttondiv, "clicked", G_CALLBACK(addValue), NULL);
     button8 = gtk_button_new_with_label("8");
+    g_signal_connect(button8, "clicked", G_CALLBACK(addValue), NULL);
     button5 = gtk_button_new_with_label("5");
+    g_signal_connect(button5, "clicked", G_CALLBACK(addValue), NULL);
     button2 = gtk_button_new_with_label("2");
+    g_signal_connect(button2, "clicked", G_CALLBACK(addValue), NULL);
     gtk_box_pack_start(GTK_BOX(boxcol2), buttondiv, FALSE, FALSE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol2), button8, FALSE, FALSE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol2), button5, FALSE, FALSE, 2);
@@ -102,10 +120,14 @@ int main(int argc, char *argv[]){
 
     boxcol3 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(boxselect), boxcol3, FALSE, FALSE, 2);
-    buttonmultiple = gtk_button_new_with_label("/");
-    button9 = gtk_button_new_with_label("8");
-    button6 = gtk_button_new_with_label("5");
-    button3 = gtk_button_new_with_label("2");
+    buttonmultiple = gtk_button_new_with_label("*");
+    g_signal_connect(buttonmultiple, "clicked", G_CALLBACK(addValue), NULL);
+    button9 = gtk_button_new_with_label("9");
+    g_signal_connect(button9, "clicked", G_CALLBACK(addValue), NULL);
+    button6 = gtk_button_new_with_label("6");
+    g_signal_connect(button6, "clicked", G_CALLBACK(addValue), NULL);
+    button3 = gtk_button_new_with_label("3");
+    g_signal_connect(button3, "clicked", G_CALLBACK(addValue), NULL);
     gtk_box_pack_start(GTK_BOX(boxcol3), buttonmultiple, FALSE, FALSE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol3), button9, FALSE, FALSE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol3), button6, FALSE, FALSE, 2);
@@ -114,7 +136,9 @@ int main(int argc, char *argv[]){
     boxcol4 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(boxselect), boxcol4, FALSE, FALSE, 2);
     buttonmoins = gtk_button_new_with_label("-");
+    g_signal_connect(buttonmoins, "clicked", G_CALLBACK(addValue), NULL);
     buttonplus = gtk_button_new_with_label("+");
+    g_signal_connect(buttonplus, "clicked", G_CALLBACK(addValue), NULL);
     buttonresult = gtk_button_new_with_label("=");
     gtk_box_pack_start(GTK_BOX(boxcol4), buttonmoins, TRUE, TRUE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol4), buttonplus, TRUE, TRUE, 2);
