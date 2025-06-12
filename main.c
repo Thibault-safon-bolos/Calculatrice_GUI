@@ -44,6 +44,11 @@ void addValue(GtkWidget *widget, gpointer data){
 }
 
 
+//Reset
+void reset(GtkWidget *widget, gpointer data){
+    gtk_entry_set_text(GTK_ENTRY(Champs), "");
+}
+
 int main(int argc, char *argv[]){
     //initialisation GTK
     gtk_init(&argc, &argv);
@@ -92,6 +97,7 @@ int main(int argc, char *argv[]){
     boxcol1 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start(GTK_BOX(boxselect), boxcol1, FALSE, FALSE, 2);
     buttonC = gtk_button_new_with_label("C");
+    g_signal_connect(buttonC, "clicked", G_CALLBACK(reset), NULL);
     button7 = gtk_button_new_with_label("7");
     g_signal_connect(button7, "clicked", G_CALLBACK(addValue), NULL);
     button4 = gtk_button_new_with_label("4");
