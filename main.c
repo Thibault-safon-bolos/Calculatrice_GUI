@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
     gtk_widget_set_name(window, "main_window");
 
     //Titre de la fenetre
-    gtk_window_set_title(GTK_WINDOW(window), "Shifumi");
+    gtk_window_set_title(GTK_WINDOW(window), "Calculatrice");
 
     //Set taille
     gtk_window_set_default_size(GTK_WINDOW(window), 500, 300);
@@ -77,6 +77,7 @@ int main(int argc, char *argv[]){
 
     Champs = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(boxmain), Champs, FALSE, FALSE, 10);
+    g_signal_connect(Champs, "activate",G_CALLBACK(traitement), NULL);
 
 
     boxselect = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -134,6 +135,7 @@ int main(int argc, char *argv[]){
     buttonplus = gtk_button_new_with_label("+");
     g_signal_connect(buttonplus, "clicked", G_CALLBACK(addValue), NULL);
     buttonresult = gtk_button_new_with_label("=");
+    g_signal_connect(buttonresult, "clicked", G_CALLBACK(traitement), NULL);
     gtk_box_pack_start(GTK_BOX(boxcol4), buttonmoins, TRUE, TRUE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol4), buttonplus, TRUE, TRUE, 2);
     gtk_box_pack_start(GTK_BOX(boxcol4), buttonresult, TRUE, TRUE, 2);
